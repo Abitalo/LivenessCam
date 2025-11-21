@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liveness Detection Demo</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div id="start-screen">
+        <div class="glass-card">
+            <h1>Liveness Cam</h1>
+            <p class="subtitle">Configure your capture sequence</p>
+
+            <div id="configuration-area">
+                <div class="section-label">Capture Sequence</div>
+                <div id="target-container" class="drag-container drop-zone">
+                    <div class="color-item white" draggable="true" data-color="white"></div>
+                    <div class="color-item red" draggable="true" data-color="red"></div>
+                    <div class="color-item yellow" draggable="true" data-color="yellow"></div>
+                    <div class="color-item blue" draggable="true" data-color="blue"></div>
+                    <div class="color-item green" draggable="true" data-color="green"></div>
+                </div>
+            </div>
+
+            <button id="start-btn">Start Capture</button>
+        </div>
+    </div>
+
+    <div id="camera-screen" class="hidden">
+        <video id="camera-feed" autoplay playsinline muted></video>
+        <div id="overlay"></div>
+    </div>
+
+    <canvas id="capture-canvas" class="hidden"></canvas>
+    <div id="toast-message" class="hidden">Sequence Complete</div>
+
+    <script src="renderer.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,23 @@
+{
+  "name": "alc_electron",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "electron": "^39.2.3"
+  },
+  "dependencies": {
+    "@capacitor-community/screen-brightness": "^7.0.0",
+    "@capacitor/android": "^7.4.4",
+    "@capacitor/cli": "^7.4.4",
+    "@capacitor/core": "^7.4.4",
+    "@capacitor/filesystem": "^7.1.4",
+    "brightness": "^3.0.0"
+  }
+}

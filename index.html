@@ -3,9 +3,10 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Liveness Detection Demo</title>
     <link rel="stylesheet" href="styles.css">
+
 </head>
 
 <body>
@@ -37,7 +38,7 @@
     <canvas id="capture-canvas" class="hidden"></canvas>
     <div id="toast-message" class="hidden">Sequence Complete</div>
 
-    <script src="renderer.js"></script>
+    <script type="module" src="/src/renderer.js"></script>
 </body>
 
 </html>

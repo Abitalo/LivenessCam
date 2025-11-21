@@ -1,41 +1,87 @@
-# Electron Liveness Detection App Walkthrough
+# Liveness Cam
 
-## Overview
-This application demonstrates a liveness detection-style camera interface. It cycles through 5 background colors (White, Red, Yellow, Blue, Green) and captures a photo for each color.
-
+A cross-platform Liveness Detection Camera application built with Electron (Desktop) and Capacitor (Android).
+![image](/docs/assets/demo.gif)
 ## Features
-- **Start Screen**: Simple start button.
-- **Camera Preview**: Fullscreen camera feed with a mirrored view.
-- **Overlay**: An elliptical transparent cutout with a colored background mask.
-- **Auto-Capture**: Automatically cycles colors every 0.5s and saves photos.
-- **Session Storage**: Photos are saved in timestamped subdirectories within the `photos` folder.
-- **Brightness Control**: Automatically maximizes screen brightness during capture and restores it afterwards.
-- **Toast Notification**: Displays a "Sequence Complete" message upon completion.
 
-## How to Run
-1. **Install Dependencies**:
-   ```bash
-   npm install
-   ```
-2. **Start the App**:
-   ```bash
-   npm start
-   ```
+-   **Cross-Platform**: Runs on macOS/Windows (Electron) and Android (Capacitor).
+-   **Customizable Sequence**: Drag and drop color chips to configure the capture sequence.
+-   **Liveness Detection**: Flashes colors (White, Red, Yellow, Blue, Green) on the screen while capturing photos.
+-   **Brightness Control**: Automatically maximizes screen brightness during capture for optimal lighting.
+-   **File Management**: Saves captured photos to the device's Documents folder (Android) or local file system (Desktop).
 
-## Usage
-1. Click the **Start** button.
-2. Grant camera permissions if prompted.
-3. Screen brightness will increase to maximum.
-4. Position your face within the elliptical frame.
-5. The screen will flash through 5 colors.
-6. After the sequence:
-   - Brightness restores to original level.
-   - App returns to the start screen.
-   - A "Sequence Complete" toast message appears.
-7. Check the `photos` folder to see the captured images organized by session.
+## Tech Stack
+
+-   **Frontend**: HTML5, CSS3 (Glassmorphism), JavaScript (ES Modules)
+-   **Bundler**: Vite
+-   **Mobile Runtime**: Capacitor (Camera, Filesystem, Screen Brightness)
+-   **Desktop Runtime**: Electron
+
+## Installation & Development
+
+### Prerequisites
+
+-   Node.js (v16+)
+-   Android Studio (for Android build)
+
+### Setup
+
+1.  Clone the repository:
+    ```bash
+    git clone <repository-url>
+    cd alc_electron
+    ```
+
+2.  Install dependencies:
+    ```bash
+    npm install
+    ```
+
+### Running on Desktop (Electron)
+
+```bash
+npm start
+```
+
+### Building for Android
+
+1.  **Build Web Assets**:
+    ```bash
+    npm run build
+    ```
+
+2.  **Sync with Capacitor**:
+    ```bash
+    npx cap sync
+    ```
+
+3.  **Open in Android Studio**:
+    ```bash
+    npx cap open android
+    ```
+    From Android Studio, click the **Run** button to build and deploy to your connected device or emulator.
 
 ## Project Structure
-- `main.js`: Electron main process, handles file saving and brightness control.
-- `renderer.js`: Handles camera access, UI updates, sequencing, and brightness logic.
-- `styles.css`: CSS for the overlay, layout, and toast notifications.
-- `index.html`: Main entry point.
+
+```
+alc_electron/
+├── src/
+│   ├── modules/          # Logic modules (Camera, Brightness, UI, DnD)
+│   └── renderer.js       # Main frontend logic
+├── android/              # Android native project
+├── dist/                 # Compiled web assets (Vite output)
+├── main.js               # Electron main process
+├── preload.js            # Electron preload script
+├── index.html            # Entry point
+├── styles.css            # Global styles
+└── vite.config.js        # Vite configuration
+```
+
+## Troubleshooting
+
+-   **Camera Permission Denied**: On Android, ensure you grant camera permissions when prompted. If denied, go to **Settings > Apps > Liveness Cam > Permissions** and enable Camera.
+-   **White Screen on Start**: Ensure you have run `npm run build` before syncing to Android.
+
+## License
+
+MIT

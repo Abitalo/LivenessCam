@@ -15,7 +15,21 @@ function createWindow() {
     },
   });
 
-  win.loadFile('www/index.html');
+  // In development, you might want to load from localhost if running vite dev server,
+  // but for simplicity we'll just load the built file or the src file if not built.
+  // Actually, with Vite, we should ideally load from the dev server url in dev mode.
+  // But to keep it simple for now:
+  // If dist/index.html exists, load it. Otherwise load index.html (but that won't work well with modules without a server).
+  // Let's assume we always build for Electron too, or we point to index.html and handle the module loading.
+  // Electron handles ES modules in renderer if contextIsolation is false and nodeIntegration is true? 
+  // Actually, loading 'index.html' directly which points to '/src/renderer.js' might fail due to file protocol CORS for modules.
+  // Best practice: Use a simple file server or just build.
+  // Let's stick to loading 'dist/index.html' and assume user runs `npm run build` before `npm start`.
+
+  win.loadFile('dist/index.html').catch(() => {
+    console.log('Could not load dist/index.html, trying index.html');
+    win.loadFile('index.html');
+  });
   // win.webContents.openDevTools(); // Optional: for debugging
 }
 

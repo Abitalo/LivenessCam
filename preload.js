@@ -1,4 +1,3 @@
-```
 const { contextBridge, ipcRenderer } = require('electron');
 
 console.log('Preload script executing...');
@@ -10,4 +9,3 @@ contextBridge.exposeInMainWorld('electronAPI', {
   setBrightness: (value) => ipcRenderer.invoke('set-brightness', value),
   log: (message) => ipcRenderer.send('log-message', message),
 });
-```
